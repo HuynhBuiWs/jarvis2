@@ -119,7 +119,7 @@ def recordAudio():
         data = r.recognize_google(audio,language='vi-VN')
         
     except sr.UnknownValueError:
-        print("sao đại ca không nói gì")
+        print("sao bạn không nói gì")
     except sr.RequestError as e:
         print("Could not request results from Google Speech Recognition service; {0}".format(e))
  
@@ -135,12 +135,12 @@ def traloi(ans1,ans2,ans3):
 def hamthucthi(row0,data):
     if row0== "KHỎE KHÔNG":
         print(data)
-        traloi("em khỏe","khỏe lắm ạ","khỏe chứ đại ca")               
+        traloi("em khỏe","khỏe lắm ạ","khỏe chứ bạn")               
     if row0== "CẢM ƠN":
         traloi('không có chi','rất vui ạ','đừng bận tâm ạ')
     if row0=="MẤY GIỜ":
         
-        speak("BÂY GIỜ LÀ " + strftime("%H:%M") + " PHÚT " + "ĐÓ ĐẠI CA")
+        speak("BÂY GIỜ LÀ " + strftime("%H:%M") + " PHÚT " + "ĐÓ bạn")
         time.sleep(5)
     if row0=="VỊ TRÍ":
         if "CỦA" in data:
@@ -153,21 +153,21 @@ def hamthucthi(row0,data):
     if row0=="MỞ ĐÈN":
         dieukhien('switch','on','switch.main_light_1')
         dieukhien('switch','on','switch.main_light_2')
-        traloi('ok đại ca','đã mở đèn cho đại ca','đèn đã mở' )
+        traloi('ok bạn','đã mở đèn cho bạn','đèn đã mở' )
         
     if row0=="ĐI NGỦ":
         dieukhien('script','on','script.go_to_sleep')
     if row0=="TẮT ĐÈN": 
         dieukhien('switch','off','switch.main_light_1')
         dieukhien('switch','off','switch.main_light_2')
-        traloi('ok đại ca','đã tắt đèn cho đại ca','đèn đã tắt' )
+        traloi('ok bạn','đã tắt đèn cho bạn','đèn đã tắt' )
     if row0=="MỞ MÁY LẠNH":
         dieukhien('switch','on','switch.air_conditioner')
-        traloi('ok đại ca','đã mở máy lạnh cho đại ca','máy lạnh đã mở ')
+        traloi('ok bạn','đã mở máy lạnh cho bạn','máy lạnh đã mở ')
 
     if row0=="TẮT MÁY LẠNH":
         dieukhien('switch','off','switch.air_conditioner')
-        traloi('ok đại ca','đã tắt máy lạnh cho đại ca','máy lạnh đã tắt')     
+        traloi('ok bạn','đã tắt máy lạnh cho bạn','máy lạnh đã tắt')     
     if row0=="TÌM":
         if "GOOGLE" in data:
             locationtim=data.find('TÌM')
@@ -175,7 +175,7 @@ def hamthucthi(row0,data):
             locationgugo=data.find('GOOGLE')
             data=data[0:locationgugo-5]
             webbrowser.open('https://www.google.co.in/#q='+data)
-            traloi('OK ĐẠI CA','KẾT QUẢ ĐÂY ĐẠI CA','CÓ NGAY ĐẠI CA')
+            traloi('OK bạn','KẾT QUẢ ĐÂY bạn','CÓ NGAY bạn')
 
     if row0=="TÌM":
         if "YOUTUBE" in data:
@@ -184,7 +184,7 @@ def hamthucthi(row0,data):
             locationgugo=data.find('YOUTUBE')
             data=data[0:locationgugo-5]
             webbrowser.open('https://www.youtube.com/results?search_query='+data)
-            traloi('OK ĐẠI CA','KẾT QUẢ ĐÂY ĐẠI CA','CÓ NGAY ĐẠI CA')
+            traloi('OK bạn','KẾT QUẢ ĐÂY bạn','CÓ NGAY bạn')
     if row0=="TÌM":
         if "NHẠC CỦA TUI" in data:
             locationtim=data.find('TÌM')
@@ -192,7 +192,7 @@ def hamthucthi(row0,data):
             locationgugo=data.find('NHẠC CỦA TUI')
             data=data[0:locationgugo-5]
             webbrowser.open('https://www.nhaccuatui.com/tim-kiem?q='+data)
-            traloi('OK ĐẠI CA','KẾT QUẢ ĐÂY ĐẠI CA','CÓ NGAY ĐẠI CA')
+            traloi('OK bạn','KẾT QUẢ ĐÂY bạn','CÓ NGAY bạn')
 
     if row0=="PHÁT" :
  
@@ -209,18 +209,18 @@ def hamthucthi(row0,data):
 
     if row0=="MỞ":
         if "CAMERA" in data:
-            traloi('OK ĐẠI CA','ĐÂY ĐẠI CA','CÓ NGAY ĐẠI CA')
+            traloi('OK bạn','ĐÂY bạn','CÓ NGAY bạn')
             webbrowser.open("http://192.168.9.103:8081")
     if row0=="TÊN":
         if "EM" in data: 
-            traloi('em là lb minh nha đại ca','em là lb minh nha đại ca','em là lb minh nha đại ca',)
+            traloi('em là lb minh nha bạn','em là lb minh nha bạn','em là lb minh nha bạn',)
     if "CÓ NGHĨA LÀ" in data:
         if "KHI ANH NÓI" in data:
             data = data.replace("KHI ANH NÓI","")
             ques=data[1:data.find("CÓ NGHĨA LÀ")-1]
             ans=data[data.find("CÓ NGHĨA LÀ")+12:len(data)]
             themdata(ques,ans)
-            traloi("NHỚ RỒI ĐẠI CA","ĐÃ HỌC XONG ĐẠI CA","CÁM ƠN ĐẠI CA")
+            traloi("NHỚ RỒI bạn","ĐÃ HỌC XONG bạn","CÁM ƠN bạn")
 def timkiemthucthi(data):
     with con:
         cur=con.cursor()
@@ -255,8 +255,9 @@ def jarvis(data):
 # initialization
 
 time.sleep(2)
-traloi('đại ca muốn hỏi gì','đại ca hỏi gì đi','chào đại ca')
+traloi('bạn muốn hỏi gì','bạn hỏi gì đi','chào bạn')
 
 while 1:
     data = recordAudio()
     jarvis(data)
+
