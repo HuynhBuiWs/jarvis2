@@ -1,0 +1,36 @@
+import paho.mqtt.client as mqtt
+import webbrowser
+# The callback for when the client receives a CONNACK response from the server.
+def on_connect(client, userdata, flags, rc):
+	print("Connected with result code "+str(rc))
+
+    # Subscribing in on_connect() means that if we lose the connection and
+    # reconnect then subscriptions will be renewed.
+	client.subscribe("PC/openapp")
+
+# The callback for when a PUBLISH message is received from the server.
+def on_message(client, userdata, msg):
+	print(msg.topic+" "+str(msg.payload))
+	app = msg.payload
+	if app == "chrome":
+		webbrowser.open('https://youtube.com')
+	if app == "minh mttt":
+		webbrowser.open('https://www.youtube.com/results?search_query='+ app)
+	if app == "turn on light":
+		
+client = mqtt.Client()
+import json
+url = 'https://api.github.com/some/endpoint'
+payload = {'some': 'data'}
+headers = {'content-type': 'application/json'}
+ 
+r = requests.post(url, data=json.dumps(payload), headers=headers)client.on_connect = on_connect
+client.on_message = on_message
+client.username_pw_set(username="vbddicrq",password="vmek8RI8criu")
+client.connect("m12.cloudmqtt.com", 11189, 60)
+
+# Blocking call that processes network traffic, dispatches callbacks and
+# handles reconnecting.
+# Other loop*() functions are available that give a threaded interface and a
+# manual interface.
+client.loop_forever()
